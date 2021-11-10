@@ -14,12 +14,10 @@ app.get('/', (req, res) => {
   res.sendFile(absolutePath)
 })
 
-// app.get('/json', (req, res) => {
-// * needed 'use' for the checker to work
-app.use('/json', (req, res) => 
+app.get('/json', function (req, res) {
   res.json({
     "message": process.env.MESSAGE_STYLE === 'uppercase' ? message.toUpperCase() : message 
   })
-);
+});
 
 module.exports = app;
