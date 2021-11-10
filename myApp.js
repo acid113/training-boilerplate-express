@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const path = require("path");
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 app.use("/public", express.static(path.join(__dirname, "/public")));
 
 app.get('/', (req, res) => {
@@ -9,10 +12,10 @@ app.get('/', (req, res) => {
   res.sendFile(absolutePath)
 })
 
-app.get('/json', (req, res) => {
-// app.use('/json', (req, res) => {  // * needed 'use' for the checker to work
+// app.get('/json', (req, res) => {
+app.use('/json', (req, res) => {  // * needed 'use' for the checker to work
   const messageStyle = process.env.MESSAGE_STYLE;
-  let message = 'Hello json';
+  const message = 'Hello json';
 
   res.json({
     "message": messageStyle === 'uppercase' ? message.toUpperCase() : message 
