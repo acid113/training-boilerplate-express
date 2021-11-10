@@ -37,5 +37,12 @@ const includeTime = (req, res, next) => {
 
 app.get('/now', setTimeAtRequest, includeTime);
 
+app.get('/:word/echo', (req, res) => {
+  const paramWord = req.params.word;
+  res.json({
+    echo: paramWord
+  })
+});
+
 
 module.exports = app;
