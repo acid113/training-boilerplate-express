@@ -24,4 +24,17 @@ app.get('/json', (req, res) => {
   })
 });
 
+const setTimeAtRequest = (req, res, next) => {
+  req.time = new Date().toString();
+  next();
+};
+
+const includeTime = (req, res, next) => {
+  return res.json({
+    time: req.time
+  })
+};
+
+app.get('/now', setTimeAtRequest, includeTime);
+
 module.exports = app;
