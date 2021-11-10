@@ -9,8 +9,8 @@ app.get('/', (req, res) => {
   res.sendFile(absolutePath)
 })
 
-app.get('/json', (req, res) => {
-// app.use('/json', (req, res) => {
+// app.get('/json', (req, res) => {
+app.use('/json', (req, res) => {  // * needed 'use' for the checker to work
   const messageStyle = process.env.MESSAGE_STYLE;
   let message = 'Hello json';
 
