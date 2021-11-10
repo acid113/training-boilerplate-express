@@ -5,6 +5,8 @@ const path = require("path");
 const dotenv = require('dotenv');
 dotenv.config();
 
+const message = 'Hello json';
+
 app.use("/public", express.static(path.join(__dirname, "/public")));
 
 app.get('/', (req, res) => {
@@ -13,14 +15,11 @@ app.get('/', (req, res) => {
 })
 
 // app.get('/json', (req, res) => {
-app.use('/json', (req, res) => {  // * needed 'use' for the checker to work
-  const messageStyle = process.env.MESSAGE_STYLE;
-  const message = 'Hello json';
-
+// * needed 'use' for the checker to work
+app.use('/json', (req, res) => 
   res.json({
-    "message": messageStyle === 'uppercase' ? message.toUpperCase() : message 
+    "message": process.env.MESSAGE_STYLE === 'uppercase' ? message.toUpperCase() : message 
   })
-  
-});
+);
 
 module.exports = app;
