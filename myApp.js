@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require("path");
+const moment = require('moment-timezone');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -30,11 +31,12 @@ const setTimeAtRequest = (req, res, next) => {
 };
 
 const includeTime = (req, res, next) => {
+  const currentTime = moment.tz(req.time, 'Asia/Manila');
   return res.json({
-    time: req.time
-  })
+    time: currentTime
+  });
 };
 
-app.get('/now', setTimeAtRequest, includeTime);
+app.get('/now', setTimeAtRequest, (includeTime));
 
 module.exports = app;
