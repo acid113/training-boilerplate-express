@@ -9,8 +9,9 @@ app.get('/', (req, res) => {
   res.sendFile(absolutePath)
 })
 
-app.get('/json', (req, res) => {
-  return res.json({
+// app.get('/json', (req, res) => {
+app.use('/json', (req, res) => {
+  res.json({
     "message": "Hello json"
   });
 });
