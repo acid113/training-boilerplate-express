@@ -1,6 +1,6 @@
 const express = require('express');
-const path = require("path");
 const app = express();
+const path = require("path");
 
 app.use("/public", express.static(path.join(__dirname, "/public")));
 
@@ -9,11 +9,21 @@ app.get('/', (req, res) => {
   res.sendFile(absolutePath)
 })
 
-// app.get('/json', (req, res) => {
-app.use('/json', (req, res) => {
-  res.json({
-    "message": "Hello json"
-  });
+app.get('/json', (req, res) => {
+// app.use('/json', (req, res) => {
+  const messageStyle = process.env.MESSAGE_STYLE;
+  let message = 'Hello json';
+
+  if (messageStyle === 'uppercase') {
+    res.json({
+      "message": message.toUpperCase()
+    });
+  } else {
+    res.json({
+      "message": message
+    });
+  }
+  
 });
 
 module.exports = app;

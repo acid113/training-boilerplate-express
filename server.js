@@ -7,6 +7,9 @@ const bGround = require('fcc-express-bground');
 const myApp = require('./myApp');
 const express = require('express');
 const app = express();
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use(function(req, res, next) {

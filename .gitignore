@@ -1,2 +1,4 @@
 /node_modules/
-.env
+
+# inlude for training purposes
+# .env 
