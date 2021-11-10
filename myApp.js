@@ -25,18 +25,29 @@ app.get('/json', (req, res) => {
   })
 });
 
-const setTimeAtRequest = (req, res, next) => {
+// const setTimeAtRequest = (req, res, next) => {
+//   req.time = new Date().toString();
+//   next();
+// };
+
+// const includeTime = (req, res, next) => {
+//   const currentTime = moment.tz(req.time, 'Asia/Manila');
+//   return res.json({
+//     time: currentTime
+//   });
+// };
+
+// app.get('/now', setTimeAtRequest, includeTime);
+
+app.get('/now', function (req, res, next) {
   req.time = new Date().toString();
   next();
-};
-
-const includeTime = (req, res, next) => {
-  const currentTime = moment.tz(req.time, 'Asia/Manila');
-  return res.json({
-    time: currentTime
-  });
-};
-
-app.get('/now', setTimeAtRequest, (includeTime));
+},
+  function (req, res) {
+    res.json({
+      time: req.time
+    });
+  }
+);
 
 module.exports = app;
