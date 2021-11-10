@@ -9,20 +9,14 @@ app.get('/', (req, res) => {
   res.sendFile(absolutePath)
 })
 
-// app.get('/json', (req, res) => {
-app.use('/json', (req, res) => {  // * needed 'use' for the checker to work
+app.get('/json', (req, res) => {
+// app.use('/json', (req, res) => {  // * needed 'use' for the checker to work
   const messageStyle = process.env.MESSAGE_STYLE;
   let message = 'Hello json';
 
-  if (messageStyle === 'uppercase') {
-    res.json({
-      "message": message.toUpperCase()
-    });
-  } else {
-    res.json({
-      "message": message
-    });
-  }
+  res.json({
+    "message": messageStyle === 'uppercase' ? message.toUpperCase() : message 
+  })
   
 });
 
