@@ -53,5 +53,14 @@ app.get('/name', (req, res) => {
   });
 });
 
+app.post('/name', (req, res) => {
+  const { first, last } = req.query;
+  console.log(`name: ${first} ${last}`);
+
+  res.json({
+    name: `${first} ${last}`
+  });
+});
+
 
 module.exports = app;
